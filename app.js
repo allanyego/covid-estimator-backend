@@ -9,9 +9,6 @@ var covidRouter = require('./routes/covid');
 
 var app = express();
 
-// // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'access.txt'), { flags: 'a' }
 );
