@@ -42,7 +42,6 @@ describe.skip('Route /api/v1/on-covid-19/logs test', () => {
     const resp = await (app)
       .get(apiEndpoint + '/logs');
 
-      console.log('Getting logs');
     expect(resp.header['content-type']).toMatch(/text\/html/);
   });
 });
