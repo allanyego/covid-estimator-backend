@@ -15,29 +15,24 @@ var builder = new xml2js.Builder({
 });
 
 /* GET main endpoint. */
-router.post('/', async function (req, res, next) {
+router.post('/:mimeType', async function (req, res, next) {
+  const mimeType = req.params.mimeType || 'json';
   try {
     await requestSchema.validateAsync(req.body);
     const resp = estimator(req.body);
 
-    res.json({
-      estimate: resp
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-
-/* GET xml version. */
-router.post('/xml', async function (req, res, next) {
-  try {
-    await requestSchema.validateAsync(req.body);
-    const resp = estimator(req.body);
-
-    res.set('Content-Type', 'application/xml');
-    res.send(builder.buildObject({
-      estimate: resp
-    }));
+    if (mimeType == 'json') {
+      res.json({
+        estimate: resp
+      });
+    } else if (mimeType == 'xml') {
+      res.set('Content-Type', 'application/xml');
+      res.send(builder.buildObject({
+        estimate: resp
+      }));
+    } else {
+      return next(new Error('Invalid mime type argument'));
+    }
   } catch (err) {
     next(err);
   }
