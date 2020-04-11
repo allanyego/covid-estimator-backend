@@ -16,10 +16,10 @@ const sampleReq = {
   totalHospitalBeds: 1380614
 }
 
-describe('Route / test', () => {
+describe('Route /json test', () => {
   it('should respond 200 status code', async () => {
     const resp = await request(app)
-      .post(apiEndpoint)
+      .post(apiEndpoint + '/json')
       .send(sampleReq);
 
     expect(resp.header['content-type']).toMatch(/application\/json/);
