@@ -1,15 +1,12 @@
 language: node_js
 node_js:
-  - lts/*
-
+- lts/*
 after_success:
-  - rm access.log
-
+- rm access.log
 after_failure:
-  - rm access.log
-
+- rm access.log
 deploy:
   provider: heroku
   api_key:
-    secure: $herokuApi
+    secure: IubAcd6+r2+6c103FQrydndBmJhxWyQYMd5aLCJ6VDEUl0E53z9sx0DsrrrEVxnbjE6IgUGTrNRM0z5VZrliIPHm6yNWTFUUTWiPEE3/GvYu947n3oucHO2p6+lY164cE5DTr8d3vXe8UGI76h84z4sTZqzNnpWW1eqE2Z8DorIUD9EsDnkZ8tVKezktETtkctREgZ9LHvarkPpGkIqRhl1DpAyXHnF8ExGFhvJput4gbbHCmDclmhrydDGOcnbQ8Plo7ctsqARGwWbjKPkOEdA1AzzJJ+Cbu43JKftcHutN/W47yKnuES5SEQFbNg3p+3UPVKHsn7ewDeAP8u/N/MKc+Dbg9cjLvCkb9P1dWPUU5/iuYA1wmX5P4yfeC7pMDP4b8urYgCbgvvGxo69HnJ9PmGoiyuG5ru2FxhP1hU55OHMToNTHPcm5rs91PwrrK9XuwWfWnzQFfIaslBR9+AYV0yfareadjldILY/RQ8i5RKDcTRJYhUntsaXD+4Tacnd5oNmvhDFYprr2sJh8t3XQEJu9xCiGlI37TFsqX/5VQjVw9Gan9NIcu5Ty6oZvR22zwL0/Il9Wv7YF0kSv9UoNwrWimhS/2dwpHKwqu1yjMDWmyF+acMJkV/lq5jxOuYzAI1gKFSFRiazAnJf+Egk8H5bvRKoSn2j7rfSA/Ng=
   app: covid-estimator-ke
