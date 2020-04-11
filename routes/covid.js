@@ -15,7 +15,7 @@ var builder = new xml2js.Builder({
 });
 
 /* GET main endpoint. */
-router.post('/:mimeType', async function (req, res, next) {
+router.post('/:mimeType?', async function (req, res, next) {
   const mimeType = req.params.mimeType || 'json';
   console.log('Resp Body', req.body);
   try {
@@ -24,9 +24,7 @@ router.post('/:mimeType', async function (req, res, next) {
     console.log('Result', resp);
     
     if (mimeType == 'json') {
-      res.json({
-        estimate: resp
-      });
+      res.json(resp);
     } else if (mimeType == 'xml') {
       res.set('Content-Type', 'application/xml');
       res.send(builder.buildObject(resp));
