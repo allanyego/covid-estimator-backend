@@ -33,7 +33,7 @@ describe('Route /api/v1/on-covid-19/xml test', () => {
       .post(apiEndpoint + '/xml')
       .send(sampleReq);
 
-    expect(resp.header['content-type']).toMatch(/text\/html/);
+    expect(resp.header['content-type']).toMatch(/application\/xml/);
   });
 });
 
@@ -42,6 +42,6 @@ describe('Route /api/v1/on-covid-19/logs test', () => {
     const resp = await request(app)
       .get(apiEndpoint + '/logs');
 
-    expect(resp.header['content-type']).toMatch(/text\/html/);
+    expect(resp.header['content-type']).toMatch(/text\/plain/);
   });
 });

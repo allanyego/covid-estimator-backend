@@ -34,6 +34,7 @@ router.post('/xml', async function (req, res, next) {
     await requestSchema.validateAsync(req.body);
     const resp = estimator(req.body);
 
+    res.set('Content-Type', 'application/xml');
     res.send(builder.buildObject({
       estimate: resp
     }));
@@ -48,7 +49,7 @@ router.get('/logs', function (req, res, next) {
     path.join(__dirname, '..', 'access.log'),
     // 'r',
     function (err, data) {
-      res.set('Content-Type', 'text/html');
+      res.set('Content-Type', 'text/plain');
       res.send(data.toString());
     }
   );

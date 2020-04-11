@@ -10,7 +10,7 @@ var covidRouter = require('./routes/covid');
 var app = express();
 
 const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, 'access.txt'), { flags: 'a' }
+  path.join(__dirname, 'access.log'), { flags: 'a' }
 );
 
 app.use(logger('dev', { stream: accessLogStream }));
