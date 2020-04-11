@@ -10,10 +10,20 @@ var covidRouter = require('./routes/covid');
 var app = express();
 
 const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, 'access.log'), { flags: 'a' }
+  path.join(__dirname, 'access.txt'), { flags: 'a' }
 );
 
-app.use(logger('dev', { stream: accessLogStream }));
+app.use(logger('dev'));
+app.use(function (req, res, next) {
+  let now = Date.now();
+  const { method, path } = req;
+  res.on('close', () => {
+    now = Date.now() - now;
+    const str = `${method}\t\t${path}\t\t${res.statusCode}\t\t${now} ms\n`
+    accessLogStream.write(str);
+  });
+  next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

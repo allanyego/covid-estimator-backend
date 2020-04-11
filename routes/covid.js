@@ -17,10 +17,12 @@ var builder = new xml2js.Builder({
 /* GET main endpoint. */
 router.post('/:mimeType', async function (req, res, next) {
   const mimeType = req.params.mimeType || 'json';
+  console.log('Resp Body', req.body);
   try {
     await requestSchema.validateAsync(req.body);
     const resp = estimator(req.body);
-
+    console.log('Result', resp);
+    
     if (mimeType == 'json') {
       res.json({
         estimate: resp
@@ -41,7 +43,7 @@ router.post('/:mimeType', async function (req, res, next) {
 /* GET logs. */
 router.get('/logs', function (req, res, next) {
   fs.readFile(
-    path.join(__dirname, '..', 'access.log'),
+    path.join(__dirname, '..', 'access.txt'),
     // 'r',
     function (err, data) {
       res.set('Content-Type', 'text/plain');

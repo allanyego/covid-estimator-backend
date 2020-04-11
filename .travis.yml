@@ -2,9 +2,9 @@ language: node_js
 node_js:
 - lts/*
 after_success:
-- rm access.log
+- rm access.txt
 after_failure:
-- rm access.log
+- rm access.txt
 deploy:
   provider: heroku
   api_key:
