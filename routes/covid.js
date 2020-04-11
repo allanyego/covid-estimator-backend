@@ -29,9 +29,7 @@ router.post('/:mimeType', async function (req, res, next) {
       });
     } else if (mimeType == 'xml') {
       res.set('Content-Type', 'application/xml');
-      res.send(builder.buildObject({
-        estimate: resp
-      }));
+      res.send(builder.buildObject(resp));
     } else {
       return next(new Error('Invalid mime type argument'));
     }
