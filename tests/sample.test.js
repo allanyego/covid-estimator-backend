@@ -37,9 +37,9 @@ describe('Route /api/v1/on-covid-19/xml test', () => {
   });
 });
 
-describe.skip('Route /api/v1/on-covid-19/logs test', () => {
+describe('Route /api/v1/on-covid-19/logs test', () => {
   it('should respond with text/html mime type', async () => {
-    const resp = await (app)
+    const resp = await request(app)
       .get(apiEndpoint + '/logs');
 
     expect(resp.header['content-type']).toMatch(/text\/html/);

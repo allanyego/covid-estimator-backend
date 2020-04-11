@@ -24,7 +24,6 @@ router.post('/', async function (req, res, next) {
       estimate: resp
     });
   } catch (err) {
-    console.log('Error', err);
     next(err);
   }
 });
@@ -49,7 +48,6 @@ router.get('/logs', function (req, res, next) {
     path.join(__dirname, '..', 'access.log'),
     // 'r',
     function (err, data) {
-      console.log('File content', data);
       res.set('Content-Type', 'text/html');
       res.send(data.toString());
     }

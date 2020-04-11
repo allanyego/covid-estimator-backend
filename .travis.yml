@@ -1,3 +1,15 @@
 language: node_js
 node_js:
   - lts/*
+
+after_success:
+  - rm access.log
+
+after_failure:
+  - rm access.log
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: $herokuApi
+  app: covid-estimator-ke
