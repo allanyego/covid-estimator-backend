@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
   const { method, path } = req;
   res.on('close', () => {
     now = Date.now() - now;
-    const str = `${method}\t\t${path}\t\t${res.statusCode}\t\t${now} ms\n`
+    const str = `${method}\t\t${path}\t\t${res.statusCode}\t\t${now}ms\n`
     accessLogStream.write(str);
   });
   next();
