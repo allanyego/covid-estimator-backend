@@ -13,13 +13,13 @@ const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'access.txt'), { flags: 'a' }
 );
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(function (req, res, next) {
   let now = Date.now();
   const { method, path } = req;
   res.on('close', () => {
-    now = Date.now() - now;
-    const str = `${method}\t\t${path}\t\t${res.statusCode}\t\t${now} ms\n`
+    now = String(Date.now() - now).padStart(2, 0) + 'ms';
+    const str = `${method}\t\t${path}\t\t${res.statusCode}\t\t${now}\n`
     accessLogStream.write(str);
   });
   next();

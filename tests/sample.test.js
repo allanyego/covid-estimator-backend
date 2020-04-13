@@ -19,7 +19,7 @@ const sampleReq = {
 describe('Route /json test', () => {
   it('should respond 200 status code', async () => {
     const resp = await request(app)
-      .post(apiEndpoint + '/json')
+      .post(apiEndpoint)
       .send(sampleReq);
 
     expect(resp.header['content-type']).toMatch(/application\/json/);

@@ -17,11 +17,9 @@ var builder = new xml2js.Builder({
 /* GET main endpoint. */
 router.post('/:mimeType?', async function (req, res, next) {
   const mimeType = req.params.mimeType || 'json';
-  console.log('Resp Body', req.body);
   try {
     await requestSchema.validateAsync(req.body);
     const resp = estimator(req.body);
-    console.log('Result', resp);
     
     if (mimeType == 'json') {
       res.json(resp);
